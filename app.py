@@ -8,7 +8,7 @@ app.secret_key = "поменяй-на-любую-длинную-фразу"
 @app.route("/")
 def index():
     session.clear()
-    return render_template("index.html")
+    return render_template("index.html", total=len(QUESTIONS))
 
 
 @app.route("/start")

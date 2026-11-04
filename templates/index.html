@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>IT-навигатор</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+  <h1>Какое направление в IT тебе подходит?</h1>
+  <p>Ответь на {{ total }} вопросов и узнай.</p>
+  <a class="btn" href="{{ url_for('start') }}">Начать тест</a>
+</body>
+</html>

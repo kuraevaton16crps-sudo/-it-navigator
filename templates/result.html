@@ -7,9 +7,55 @@
   <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 <body>
-  <h1>Тебе подходит:</h1>
-  <h2>{{ first }}</h2>
-  <p>Ещё тебе может понравиться: {{ second }}</p>
-  <a class="btn" href="{{ url_for('index') }}">Пройти заново</a>
+  <main class="page">
+    <p class="lead">Тебе больше всего подходит</p>
+
+    <section class="card main-card" style="--accent: {{ first.color }}">
+      <div class="big-icon">{{ first.icon }}</div>
+      <h1>{{ first_name }}</h1>
+      <p>{{ first.about }}</p>
+
+      <h3>Какие навыки нужны</h3>
+      <ul>
+        {% for skill in first.skills %}
+          <li>{{ skill }}</li>
+        {% endfor %}
+      </ul>
+
+      <h3>Кем можно работать</h3>
+      <div class="tags">
+        {% for job in first.jobs %}
+          <span class="tag">{{ job }}</span>
+        {% endfor %}
+      </div>
+
+      <h3>С чего начать</h3>
+      <p class="start">{{ first.start }}</p>
+    </section>
+
+    <section class="card second-card" style="--accent: {{ second.color }}">
+      <p class="small">Ещё тебе может понравиться</p>
+      <h2>{{ second.icon }} {{ second_name }}</h2>
+      <p>{{ second.about }}</p>
+    </section>
+
+    <section class="card">
+      <h3>Твои результаты по всем направлениям</h3>
+      {% for bar in bars %}
+        <div class="bar-row">
+          <div class="bar-label">
+            <span>{{ bar.icon }} {{ bar.name }}</span>
+            <span>{{ bar.percent }}%</span>
+          </div>
+          <div class="bar">
+            <div class="bar-fill"
+                 style="width: {{ bar.percent }}%; background: {{ bar.color }}; animation-delay: {{ loop.index0 * 0.1 }}s"></div>
+          </div>
+        </div>
+      {% endfor %}
+    </section>
+
+    <a class="btn" href="{{ url_for('index') }}">Пройти заново</a>
+  </main>
 </body>
 </html>

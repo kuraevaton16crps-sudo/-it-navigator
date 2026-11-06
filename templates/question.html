@@ -7,15 +7,23 @@
   <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 <body>
-  <p>Вопрос {{ number }} из {{ total }}</p>
-  <h2>{{ q.text }}</h2>
+  <main class="page">
+    <div class="progress-text">Вопрос {{ number }} из {{ total }}</div>
+    <div class="progress">
+      <div class="progress-fill"
+           style="width: {{ number * 100 / total }}%; --from: {{ (number - 1) * 100 / total }}%"></div>
+    </div>
 
-  <form method="POST">
-    {% for a in q.answers %}
-      <button class="answer" type="submit" name="answer" value="{{ loop.index0 }}">
-        {{ a.text }}
-      </button>
-    {% endfor %}
-  </form>
+    <h2 class="question">{{ q.text }}</h2>
+
+    <form method="POST">
+      {% for a in q.answers %}
+        <button class="answer" type="submit" name="answer" value="{{ loop.index0 }}"
+                style="animation-delay: {{ loop.index0 * 0.08 }}s">
+          {{ a.text }}
+        </button>
+      {% endfor %}
+    </form>
+  </main>
 </body>
 </html>

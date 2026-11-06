@@ -7,8 +7,20 @@
   <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 <body>
-  <h1>Какое направление в IT тебе подходит?</h1>
-  <p>Ответь на {{ total }} вопросов и узнай.</p>
-  <a class="btn" href="{{ url_for('start') }}">Начать тест</a>
+  <main class="page">
+    <div class="logo">🧭</div>
+    <h1>Какое направление в IT тебе подходит?</h1>
+    <p class="lead">Ответь на {{ total }} вопросов и узнай, какая профессия тебе ближе.</p>
+
+    <div class="chips">
+      {% for key in names %}
+        <span class="chip" style="--accent: {{ info[key].color }}; animation-delay: {{ loop.index0 * 0.08 }}s">
+          {{ info[key].icon }} {{ names[key] }}
+        </span>
+      {% endfor %}
+    </div>
+
+    <a class="btn" href="{{ url_for('start') }}">Начать тест</a>
+  </main>
 </body>
 </html>
